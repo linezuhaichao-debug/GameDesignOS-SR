@@ -1,6 +1,6 @@
 # Game Design Source Curator
 
-**父项目:** [GameDesignOS by Paranoia](../README.zh-CN.md)
+**父项目:** [GameDesignOS by Paranoia](../README.md)
 
 **语言:** 简体中文 | [English](./README.en.md)
 

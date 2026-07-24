@@ -26,8 +26,7 @@ Tag 不等于 GitHub Release；本地 wheel 也不等于包已经公开发布。
 
 - `CHANGELOG.md` 是否新增对应版本段。
 - `releases/vX.Y.Z.md` 是否新增 release note。
-- README trio 的 skill 数量、Skill 表格、展示图和安装路径是否更新。
-- `docs/try-it-in-10-minutes.md`、`docs/showcases/README.md` 是否补入口。
+- README 的 skill 数量、Skill 表格和安装路径是否更新。
 - `scripts/validate_repo.py` 是否把新 skill 纳入 required skills。
 - release commit 完成后，Git tag 是否应该新增或更新到对应版本。
 
@@ -40,7 +39,7 @@ Tag 不等于 GitHub Release；本地 wheel 也不等于包已经公开发布。
 - `game.designos.yaml` 与 workspace schema 是否同步。
 - v0.8/v0.9 workspace 是否仍可兼容打开和校验。
 - `contracts/README.md` 是否区分 skill-level 与 workspace-level contract。
-- `docs/product/`、`docs/workflows/` 与 README trio 是否同步。
+- `docs/product/`、`docs/workflows/` 与 README 是否同步。
 - `scripts/validate_repo.py` 是否覆盖新增必需路径与 workspace 约定。
 - 是否明确兼容现有 skill 直接安装方式。
 - 是否避免把 private workspace、客户材料或真实项目输出提交到公开仓库。

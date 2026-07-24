@@ -6,10 +6,6 @@
 
 它不是泛泛的留存建议生成器，也不是“把游戏做得更快”的工具。它先判断当前玩家和情境是否处在最佳刺激窗口，再把问题落到 `CLP`、`SF`、`EB`、`AR`、`MD/min` 五个设计旋钮，最后输出主旋钮明确、指标周期匹配、风险门预注册的实验方案。
 
-<p align="center">
-  <img src="../assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer showcase" width="100%">
-</p>
-
 ## 定位
 
 这个 skill 面向游戏策划、制作人、数据分析、独立开发者和 AI agent。它适合处理已经有原型、Demo、线上版本、测试录像、数据快照或明确体验问题的项目。

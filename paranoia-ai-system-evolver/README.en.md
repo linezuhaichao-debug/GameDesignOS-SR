@@ -1,6 +1,6 @@
 # Paranoia AI System Evolver
 
-**Parent project:** [GameDesignOS by Paranoia](../README.en.md)
+**Parent project:** [GameDesignOS by Paranoia](../README.md)
 
 **Languages:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 

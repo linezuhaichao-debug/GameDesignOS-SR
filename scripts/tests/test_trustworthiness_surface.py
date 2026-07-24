@@ -25,7 +25,6 @@ SKILL_DIRS = (
 )
 PROOF_CASES = (
     "game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md",
-    "docs/showcases/elliot-experience-density-report/README.md",
 )
 
 
@@ -52,22 +51,6 @@ class TrustworthinessSurfaceTest(unittest.TestCase):
                 "Host adapters": "adapters",
                 "Public proof cases": "proof_cases",
             },
-            "README.en.md": {
-                "Specialist skills": "skills",
-                "Contract schemas": "schemas",
-                "v1 workspace sections": "workspace",
-                "Workflow guides": "workflows",
-                "Host adapters": "adapters",
-                "Public proof cases": "proof_cases",
-            },
-            "README.zh-CN.md": {
-                "专家 skill": "skills",
-                "Contract schema": "schemas",
-                "v1 workspace 分区": "workspace",
-                "端到端工作流": "workflows",
-                "宿主 adapter": "adapters",
-                "公开 proof case": "proof_cases",
-            },
         }
         for relative, row_labels in labels.items():
             text = (REPO_ROOT / relative).read_text(encoding="utf-8")
@@ -80,7 +63,7 @@ class TrustworthinessSurfaceTest(unittest.TestCase):
             self.assertTrue((REPO_ROOT / relative).exists(), f"public proof case missing: {relative}")
 
     def test_readmes_do_not_use_deprecated_star_history_embed(self) -> None:
-        for relative in ("README.md", "README.en.md", "README.zh-CN.md"):
+        for relative in ("README.md",):
             text = (REPO_ROOT / relative).read_text(encoding="utf-8")
             self.assertNotIn("api.star-history.com", text)
             self.assertNotIn("## Star History", text)

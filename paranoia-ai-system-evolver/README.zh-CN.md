@@ -1,6 +1,6 @@
 # Paranoia AI System Evolver
 
-**所属项目:** [GameDesignOS by Paranoia](../README.zh-CN.md)
+**所属项目:** [GameDesignOS by Paranoia](../README.md)
 
 **语言:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 

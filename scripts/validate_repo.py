@@ -26,8 +26,6 @@ REQUIRED_SKILLS = [
 REQUIRED_PATHS = [
     ".gitignore",
     "README.md",
-    "README.zh-CN.md",
-    "README.en.md",
     "AGENTS.md",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
@@ -60,9 +58,6 @@ REQUIRED_PATHS = [
     "docs/product/mvp-definition.md",
     "docs/product/roadmap.md",
     "docs/how-to-use.zh-CN.md",
-    "docs/try-it-in-10-minutes.zh-CN.md",
-    "docs/GITHUB_ABOUT.md",
-    "docs/github-about-checklist.md",
     "docs/workflows/README.md",
     "docs/workflows/decision-to-information.md",
     "docs/workflows/idea-to-validation.md",
@@ -125,8 +120,6 @@ REQUIRED_PATHS = [
     "scripts/validate_agent_skills.py",
     "scripts/smoke_installed_wheel.py",
     "scripts/smoke_sdist_rebuild.py",
-    "scripts/create_golden_project.py",
-    "examples/golden-lighthouse/README.md",
 ]
 
 WORKSPACE_TEMPLATE_DIRS = {
@@ -549,7 +542,6 @@ def _check_project_workflow_governance(repo_root: Path, errors: list[str]) -> No
 def _check_public_readme_surface(repo_root: Path, errors: list[str]) -> None:
     proof_cases = (
         repo_root / "game-experience-analyzer" / "examples" / "survival-33-days-gameplay-experience-report.md",
-        repo_root / "docs" / "showcases" / "elliot-experience-density-report" / "README.md",
     )
     workspace_manifest_text = (
         repo_root / "runtime" / "workspace-template-v1" / "game.designos.yaml"
@@ -573,21 +565,7 @@ def _check_public_readme_surface(repo_root: Path, errors: list[str]) -> None:
             ),
             "Public proof cases": len(proof_cases),
         },
-        "README.en.md": {},
-        "README.zh-CN.md": {
-            "专家 skill": len(REQUIRED_SKILLS),
-            "Contract schema": len(list((repo_root / "contracts").glob("*.schema.json"))),
-            "v1 workspace 分区": workspace_sections,
-            "端到端工作流": len(
-                [path for path in (repo_root / "docs" / "workflows").glob("*.md") if path.name != "README.md"]
-            ),
-            "宿主 adapter": len(
-                [path for path in (repo_root / "adapters").glob("*.md") if path.name != "README.md"]
-            ),
-            "公开 proof case": len(proof_cases),
-        },
     }
-    readme_labels["README.en.md"] = dict(readme_labels["README.md"])
 
     for path in proof_cases:
         if not path.exists():

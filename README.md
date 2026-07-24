@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="./assets/gamedesignos-github-hero-v2.png" alt="GameDesignOS turns scattered AI game-design output into evidence, experiments, decisions, and durable project memory" width="100%">
-</p>
-
 <h1 align="center">GameDesignOS</h1>
 
 <p align="center">
@@ -15,7 +11,6 @@
 </p>
 
 <p align="center">
-  <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="./docs/workflows/">Workflows</a> ·
   <a href="#featured-cases">Cases</a> ·
@@ -70,7 +65,7 @@ You still make the calls. The system supplies specialist workflows, shared hando
 | v1 workspace sections | 9 | Nine lifecycle directories: Inbox, Decisions, Assumptions, Evidence, Experiments, Design Assets, Workflows, Learning, and Exports; runtime state stays separate under `.gamedesignos/` |
 | Workflow guides | 5 | Idea-to-validation, media-to-diagnosis, weekly ED experiment, evidence-to-proposal, and decision-to-information paths |
 | Host adapters | 4 | Codex, Claude Code, OpenAI-compatible agents, and local harness integration notes |
-| Public proof cases | 2 | Evidence-linked game-analysis and experience-density examples with explicit source boundaries |
+| Public proof cases | 1 | Evidence-linked game-analysis example with explicit source boundaries |
 | Runtime | 1 | Deterministic local CLI for routing, workspace creation, validation, health checks, graphs, gates, and review-safe packs |
 
 > **Development candidate: v1.3.0.dev0.** Candidate wheels carry their own contracts/templates and `router.yaml` remains the only editable routing source. UL (Uncertainty Ladder) now has a machine-readable `ul_state` schema, UL-L0 through UL-L5, an optional workflow reference, and attribution/transfer regressions. All 7 skills still pass the Agent Skills reference validator; packaged behavior fixtures remain 9 suites / 53 evals. The latest tagged stable source version is v1.2.0; its GitHub Release page is not published yet.
@@ -168,15 +163,9 @@ Use $paranoia-ai-system-evolver to upgrade this workflow or AI work order into a
 Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience density problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
-For the full onboarding path, see [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md).
-
 ## 60-Second Demo
 
 Start with one screenshot, gameplay recording, trailer/PV, or video link. Ask the skill for an evidence-linked report:
-
-<p align="center">
-  <img src="./assets/demo-game-experience-before-after.png" alt="60-second demo: Game Experience Analyzer turns PV input into an evidence-linked report" width="100%">
-</p>
 
 ```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
@@ -186,12 +175,11 @@ For concrete proof paths, continue to the cases below. The demo above shows the 
 
 ## Featured Cases
 
-If you are browsing on GitHub, start with these two cases. The first shows a single gameplay recording turning into a Game Experience Analyzer report; the second shows how public video evidence flows into an Experience Density experiment package.
+Start with this case: a single gameplay recording turning into a Game Experience Analyzer report.
 
 | Case | Skill Route | What To Look For | Link |
 | --- | --- | --- | --- |
 | `《生存33天》41 min gameplay recording` | `$game-experience-analyzer` | A recording sample becomes timestamped evidence, visual evidence cards, feature exposure/unlock/first-use ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes. Source status: `needs_review`. | [Open report](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md) |
-| `《冒险家艾略特的千年奇谭》Demo` | `$game-experience-analyzer -> $game-experience-density-optimizer` | Public video frames become an ED evidence gate, metric horizon, screenshot evidence cards, variant matrix, instrumentation, and rollback rules. | [Open case](./docs/showcases/elliot-experience-density-report/README.md) |
 
 ## Easy Start
 
@@ -270,54 +258,6 @@ game-design-proposal-writer/
 
 After installation, check that the `SKILL.md` frontmatter `name` matches the folder name, and that relative links inside `references/`, `templates/`, and `examples/` still resolve.
 
-## Showcase
-
-Seven bounded entry points cover the main GameDesignOS workflow: concept architecture, evidence and diagnosis, proposal assembly, experience-density iteration, workflow governance, design-text translation, and source curation.
-
-<table>
-  <tr>
-    <td width="25%">
-      <a href="./game-concept-architect/"><img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase"></a>
-    </td>
-    <td width="25%">
-      <a href="./game-experience-analyzer/"><img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer showcase"></a>
-    </td>
-    <td width="25%">
-      <a href="./game-design-proposal-writer/"><img src="./assets/showcase-game-design-proposal-writer.png" alt="Game Design Proposal Writer showcase"></a>
-    </td>
-    <td width="25%">
-      <a href="./game-experience-density-optimizer/"><img src="./assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer showcase"></a>
-    </td>
-  </tr>
-  <tr>
-    <td><a href="./game-concept-architect/"><b>Architect game concepts</b></a><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
-    <td><a href="./game-experience-analyzer/"><b>Analyze game experience</b></a><br>Convert screenshots, recordings, trailers, and video links into evidence-first diagnosis, game dissection, and mechanic-transfer judgment.</td>
-    <td><a href="./game-design-proposal-writer/"><b>Assemble proposals</b></a><br>Turn research, concept contracts, evidence notes, validation plans, and production constraints into review-ready proposals and pitches.</td>
-    <td><a href="./game-experience-density-optimizer/"><b>Optimize experience density</b></a><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td width="33%">
-      <a href="./paranoia-ai-system-evolver/"><img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase"></a>
-    </td>
-    <td width="33%">
-      <a href="./game-design-book-translator/"><img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase"></a>
-    </td>
-    <td width="33%">
-      <a href="./game-design-source-curator/"><img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator showcase"></a>
-    </td>
-  </tr>
-  <tr>
-    <td><a href="./paranoia-ai-system-evolver/"><b>Evolve workflows</b></a><br>Upgrade prompts, schemas, evals, memory, and tool routing through WOOP, VOI, OODA, gates, and rollback.</td>
-    <td><a href="./game-design-book-translator/"><b>Translate design knowledge</b></a><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
-    <td><a href="./game-design-source-curator/"><b>Curate sources</b></a><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
-  </tr>
-</table>
-
-For the compact proof-path list, see the [showcase index](./docs/showcases/README.md).
-
 ## System Architecture
 
 `GameDesignOS` is organized as four product layers plus a cross-cutting governance plane. The current v1.3 candidate adds optional UL between VOI selection and OODA execution without migrating the v1 workspace schema:
@@ -379,7 +319,7 @@ Read the repository as a GameDesignOS public base rather than a normal asset fol
 | Product and workflows | `docs/product/`, `docs/workflows/` | Product boundary, architecture, roadmap, and end-to-end project routes. |
 | Public onboarding and proof | `README*`, `docs/`, `releases/` | Onboarding, release history, public-safe examples, and proof paths. |
 | Adapters and validation | `adapters/`, `.github/`, `scripts/` | Host integration, CI, repository checks, and behavior evals. |
-| Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution boundary, licensing, and public visual assets. |
+| Governance | `CONTRIBUTING.md`, `LICENSE` | Contribution boundary and licensing. |
 
 Most skills follow this structure:
 

@@ -30,9 +30,9 @@ The public repository separates editable truth, executable runtime, installable 
 | Editable contracts | `contracts/` | Canonical schemas and the only editable `router.yaml`. Built wheels receive generated snapshots; package snapshots are not a second editing surface. |
 | Workspace templates | `runtime/workspace-template-v1/`, `runtime/workspace-template/` | Current Project-Ready v1 template and the compatible legacy v0.8/v0.9 template. |
 | Product and workflow docs | `docs/product/`, `docs/workflows/` | Product boundary, architecture, roadmap, and end-to-end routes. |
-| Public proof | `examples/`, skill `examples/`, `docs/showcases/` | Synthetic or cleared evidence that demonstrates bounded behavior without exposing private projects. |
+| Public proof | skill `examples/` | Synthetic or cleared evidence that demonstrates bounded behavior without exposing private projects. |
 | Validation and delivery | `scripts/`, `.github/`, `releases/`, `CHANGELOG.md` | Repository gates, behavior tests, package smoke checks, CI, version history, and release notes. |
-| Integration and media | `adapters/`, `assets/` | Host-agent integration guidance and public visual material. |
+| Integration | `adapters/` | Host-agent integration guidance. |
 
 `build/`, `dist/`, `*.egg-info/`, caches, reports, and private/local deliverables are generated or local-only and remain ignored. They are never release truth.
 

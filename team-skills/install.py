@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""安装 SR 团队工作流 skill（sr_gdd / sr_analysis）。
+"""安装 SR 团队工作流 skill（sr_gdd / sr_analysis / sr_concept）。
 
-把 team-skills/ 下的 sr_gdd、sr_analysis、shared 复制到本机 skill 目录，
+把 team-skills/ 下的 sr_gdd、sr_analysis、sr_concept、shared 复制到本机 skill 目录，
 并将其中的 <SR_REPO>、<SR_WORKSPACE> 占位符替换为本机实际路径。
 
 用法：
@@ -17,7 +17,7 @@ import shutil
 import sys
 from pathlib import Path
 
-SKILL_DIRS = ("sr_gdd", "sr_analysis", "shared")
+SKILL_DIRS = ("sr_gdd", "sr_analysis", "sr_concept", "shared")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEAM_SKILLS = Path(__file__).resolve().parent
 
@@ -87,7 +87,7 @@ def main() -> None:
 
     target.mkdir(parents=True, exist_ok=True)
     install(workspace, target)
-    print("\n完成。在你的 AI 工具中输入 /sr_gdd 或 /sr_analysis 即可使用；详见 team-skills/README.md。")
+    print("\n完成。在你的 AI 工具中输入 /sr_gdd、/sr_analysis 或 /sr_concept 即可使用；详见 team-skills/README.md。")
 
 
 if __name__ == "__main__":

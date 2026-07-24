@@ -1,13 +1,14 @@
 # SR 团队工作流 skill
 
-本目录是团队内部的两个工作流 skill，方法论只读引用本仓库的上游 skill（`game-experience-analyzer`、`game-design-proposal-writer`、`paranoia-ai-system-evolver` 等），本目录只固化 SR 团队的项目语境、VOI 门、产出路径与 Human Gate。
+本目录是团队内部的三个工作流 skill，方法论只读引用本仓库的上游 skill（`game-experience-analyzer`、`game-design-proposal-writer`、`game-concept-architect`、`paranoia-ai-system-evolver` 等），本目录只固化 SR 团队的项目语境、VOI 门、产出路径与 Human Gate。
 
 | skill | 用途 | 什么时候用 |
 | --- | --- | --- |
+| `sr_concept` | 创新功能设计：把一句话创意扩成设计核三角报告（concept seed、玩家动词、design nucleus options、假设台账）；你拍板设计核后展开完整功能设计（玩家承诺、核心循环、scope gate、验证计划），交接给 sr_gdd | "我有个创意"、"想个新玩法"、"这个点子能不能做" |
 | `sr_analysis` | 体验诊断 + 设计拆解复刻：先把录屏/截图/PV/商店页等素材分析成证据链报告；你判定"可参考"后再拆成复刻规格，交接给 sr_gdd | "分析这段录屏"、"拆一下这个竞品玩法"、"这个功能能不能复刻" |
 | `sr_gdd` | 功能 GDD 工作流：把体验记录、旧策划案、脑图、配置表等材料写成实现粒度的功能 GDD（功能规则、配置契约、验收标准、交接清单） | "写策划案"、"出 GDD"、"把这个整理成功能文档" |
 
-两个 skill 共享 `shared/` 下的项目语境（`sr_project_context.md`：数值铁律、写作约束）与上游说明（`SR_UPSTREAM.md`），安装时必须三个目录一起装。
+三个 skill 共享 `shared/` 下的项目语境（`sr_project_context.md`：数值铁律、写作约束）与上游说明（`SR_UPSTREAM.md`），安装时必须四个目录一起装。
 
 ## 一、安装（团队成员）
 
@@ -22,7 +23,7 @@ python team-skills/install.py
 
 1. 自动识别仓库路径（`<SR_REPO>`）；
 2. 询问 workspace 路径（`<SR_WORKSPACE>`，策划案/证据/决议的落盘位置，通常自动检测正确，回车确认即可）；
-3. 询问安装目标目录后，把 `sr_gdd`、`sr_analysis`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
+3. 询问安装目标目录后，把 `sr_gdd`、`sr_analysis`、`sr_concept`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
 
 非交互安装（脚本/CI 用）：
 
@@ -30,11 +31,31 @@ python team-skills/install.py
 python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --target "D:\.claude\skills" --yes
 ```
 
-**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr_gdd/`、`sr_analysis/`、`shared/` 三个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
+**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr_gdd/`、`sr_analysis/`、`sr_concept/`、`shared/` 四个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
 
 **更新**：`git pull` 后重跑一次 `install.py` 即可（会覆盖旧安装）。
 
 ## 二、使用教学
+
+### sr_concept：从创意到功能设计
+
+```
+/sr_concept 玩家可以回溯时间改写上一场战斗的结果
+```
+
+或直接说人话："我有个创意：……"、"想个新玩法"。裸 `/sr_concept`（不带创意）不会自动开始，会先问你要创意一句话和定位（本项目新功能 / 通用概念，默认项目内）。
+
+它会先复述创意并和你确认理解，然后产出**设计核三角报告**：concept seed、玩家动词清单、2~4 个 design nucleus 候选（各带风险与最小验证方式）、假设台账、外部证据状态。做完即停，由你在设计核门做选择：
+
+| 选项 | 含义 |
+| --- | --- |
+| `pick_nucleus_<编号>` | 选定设计核，进入第二阶段展开完整功能设计 |
+| `merge_nuclei` | 合并候选，回炉调整 |
+| `regenerate_options` | 候选都不行，重新生成 |
+| `request_external_evidence` | 关键判断缺证据，先补最小验证 |
+| `stop` | 终止 |
+
+选定设计核后才展开**功能设计稿**（玩家承诺、核心循环、关键系统、scope gate、生产可行性、验证计划、配置项预测），和你迭代到认可后，交接门选 `route_to_sr_gdd` 自动生成给 sr_gdd 的交接材料。
 
 ### sr_analysis：分析素材
 
@@ -78,6 +99,8 @@ python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --target "
 ### 典型流水线
 
 ```
+一句话创意 ──────► /sr_concept ──► 设计核三角报告 ──(pick_nucleus)──► 功能设计稿
+                                                              │
 竞品录屏/截图 ──► /sr_analysis ──► 证据链报告 ──(enter_dissection)──► 复刻规格
                                                               │
                                               (route_to_sr_gdd)│
@@ -92,6 +115,7 @@ python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --target "
 | 产出 | 子目录 |
 | --- | --- |
 | 功能 GDD | `proposals\` |
+| 设计核三角报告 / 功能设计稿 | `analysis\` |
 | 体验报告 / 问题卡 / 复刻规格 / 交接 JSON | `analysis\` |
 | 证据包（证据索引、时间戳账本） | `evidence\` |
 | 决策记录（decision.schema.json） | `decisions\` |

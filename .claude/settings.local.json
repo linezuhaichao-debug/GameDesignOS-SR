@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '15,75p' scripts/validate_repo.py)",
+      "Bash(sed -n '115,175p' scripts/validate_repo.py)",
+      "Bash(sed -n '560,620p' scripts/validate_repo.py)",
+      "Bash(sed -n '30,36p' docs/product/architecture.md)",
+      "Bash(sed -n '25,35p' releases/README.md)",
+      "Bash(sed -n '1,12p' game-experience-density-optimizer/README.md)",
+      "Bash(sed -n '1,8p' game-design-book-translator/README.md)",
+      "Bash(python scripts/validate_repo.py)",
+      "Bash(python -m unittest discover -s scripts/tests)",
+      "Bash(python scripts/run_behavior_evals.py --all-packaged)",
+      "Bash(awk '{print $1}')",
+      "Read(//e/TimeMachine/.claude/skills/**)",
+      "Read(//e/TimeMachine/**)",
+      "Bash(git -C \"E:/TimeMachine/GameDesignOS/GameDesignOS-SR\" remote -v)",
+      "Bash(git -C \"E:/TimeMachine/GameDesignOS/GameDesignOS-SR\" status --short)",
+      "Bash(mkdir -p \"E:/TimeMachine/GameDesignOS/GameDesignOS-SR/team-skills\")",
+      "Bash(cp -r \"E:/TimeMachine/.claude/skills/sr_gdd\" \"E:/TimeMachine/.claude/skills/sr_analysis\" \"E:/TimeMachine/.claude/skills/shared\" \"E:/TimeMachine/GameDesignOS/GameDesignOS-SR/team-skills/\")",
+      "Bash(python team-skills/install.py --workspace \"E:/TimeMachine/GameDesignOS/workspace\" --target \"/tmp/sr-skill-test/skills\" --yes)",
+      "Read(//tmp/sr-skill-test/**)",
+      "Bash(python scripts/validate_skill.py --help)",
+      "Bash(python scripts/validate_skill.py team-skills/sr_gdd)",
+      "Bash(python scripts/validate_skill.py team-skills/sr_analysis)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
+    ]
+  }
+}

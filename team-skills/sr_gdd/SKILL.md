@@ -107,4 +107,4 @@ approve / approve_with_conditions / request_missing_evidence / revise / reject
 - `<SR_REPO>\paranoia-ai-system-evolver\SKILL.md`（治理检查）
 - `<SR_REPO>\contracts\decision.schema.json`（决策记录格式）
 
-上游同步方式与参考样本路径见 `../shared/SR_UPSTREAM.md`。
+上游同步方式见 `../shared/SR_UPSTREAM.md`。

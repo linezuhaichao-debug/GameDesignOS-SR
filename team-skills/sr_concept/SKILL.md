@@ -38,7 +38,7 @@ description: 创新功能设计工作流——把一句话创意扩展为完整�
 
 ## 路径约定
 
-文中所有绝对路径在仓库中以两个变量书写：`<SR_REPO>`（本仓库 GameDesignOS-SR 的克隆路径）与 `<SR_WORKSPACE>`（团队 workspace 路径）。安装脚本已将其替换为本机实际路径；手动安装时，将这两个变量整体替换为实际路径即可，无需改动其它内容。
+文中所有绝对路径在仓库中以三个变量书写：`<SR_REPO>`（本仓库 GameDesignOS-SR 的克隆路径）、`<SR_WORKSPACE>`（团队 workspace 路径）与 `<SR_PROJECT>`（Unity 工程根目录，配表与文本表所在）。安装脚本已将其替换为本机实际路径；手动安装时，将这三个变量整体替换为实际路径即可，无需改动其它内容。
 
 ## 执行流程
 
@@ -118,7 +118,7 @@ pick_nucleus_<编号> / merge_nuclei / regenerate_options / request_external_evi
 - **Key Systems**：每个系统必须答出四问——服务哪个核心循环、改变什么玩家行为、创造什么反馈、如何被验证；答不出的系统不得加入
 - **Uncertainty Calibration**：不确定性来源（人/隐藏信息/身体技能/脑力技能/随机性）、玩家能否解释失败原因、随机性是否覆盖玩家努力
 - **Scope Gate**：MVP 必须有、后续版本应该有、建议砍掉的危险设计
-- **Production Feasibility**：项目内定位时落到引擎与工具链约束（C# 确定性 sim / Lua 热更边界、Excel 配表工具链、移动端性能预算）；内容产能能否持续
+- **Production Feasibility**：项目内定位时落到引擎与工具链约束（C# 确定性 sim / Lua 热更边界、`LuaConfigs` 与 `RPG_Configs` 配表管线、移动端性能预算）；内容产能能否持续
 - **Validation Plan**：最小可玩原型、第一轮测试目标、最危险假设、通过标准、失败标准、下一步投入条件。**没有通过/失败标准不得建议继续投入**
 - **Assumption Ledger**：更新版，标注第一阶段哪些 assumption 已被设计决策消化
 - **配置项预测**：本设计涉及的新配置表与字段清单，全部标"待配表"——为 sr_gdd 配置契约章节备料

@@ -8,7 +8,9 @@
 
 ## 数值铁律
 
-- 所有玩法数值 **data-driven**，来自 Excel 配表（工具链 `Assets/Scripts/Editor/ExcelConfigs/`），**禁止硬编码**
+- 所有玩法数值 **data-driven**，**禁止硬编码**
+- 配置来源分两处：通用玩法配置在 `<SR_PROJECT>/Assets/HotRes/Lua/LuaConfigs/`；RPG 战斗引擎（RPGBattleModule）单独读取 `<SR_PROJECT>/Assets/HotRes/RPGGame/RPG_Configs/`
+- 多语言文本表在 `<SR_PROJECT>/Assets/HotRes/Lua/Locale/`，设计阶段默认使用 `string_zh_CN`；文案引用只标键名即可（内部默认走 `string_zh_CN`），未建键的文案标"待配表"
 - 策划案中出现的每个数值必须标注来源：`配表名.字段名`；还没有配表的标注"待配表"
 - 公式必须写出变量定义，不得只给结论数字
 

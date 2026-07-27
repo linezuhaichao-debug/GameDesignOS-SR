@@ -19,19 +19,20 @@ cd <仓库路径>
 python team-skills/install.py
 ```
 
-脚本会做三件事：
+脚本会做四件事：
 
 1. 自动识别仓库路径（`<SR_REPO>`）；
 2. 询问 workspace 路径（`<SR_WORKSPACE>`，策划案/证据/决议的落盘位置，通常自动检测正确，回车确认即可）；
-3. 询问安装目标目录后，把 `sr_gdd`、`sr_analysis`、`sr_concept`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
+3. 询问 Unity 工程根目录（`<SR_PROJECT>`，包含 `Assets/` 的目录，配表与文本表所在；自动检测 = `Assets/HotRes` 结构 + `.git` remote URL 特征匹配，与工程目录名无关，检测不到会要求手动输入）；
+4. 询问安装目标目录后，把 `sr_gdd`、`sr_analysis`、`sr_concept`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
 
 非交互安装（脚本/CI 用）：
 
 ```bash
-python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --target "D:\.claude\skills" --yes
+python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --project "D:\TimeMachine\PlanetRoot" --target "D:\.claude\skills" --yes
 ```
 
-**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr_gdd/`、`sr_analysis/`、`sr_concept/`、`shared/` 四个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
+**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr_gdd/`、`sr_analysis/`、`sr_concept/`、`shared/` 四个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>`、`<SR_PROJECT>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
 
 **更新**：`git pull` 后重跑一次 `install.py` 即可（会覆盖旧安装）。
 

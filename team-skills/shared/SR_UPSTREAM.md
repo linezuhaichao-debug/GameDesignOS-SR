@@ -33,7 +33,7 @@ git merge upstream/main   # 或 rebase，解决冲突后更新本文件的版本
 
 ## 路径约定
 
-本文件与两个 SKILL.md 中使用两个路径变量，由 `team-skills/install.py` 安装时替换为本机实际路径：`<SR_REPO>` 为 GameDesignOS-SR 仓库的本地克隆路径，`<SR_WORKSPACE>` 为团队 workspace 路径。手动安装时将两处变量整体替换即可；两个 SKILL.md 与本文件中的所有路径均基于这两个变量书写。
+本文件与三个 SKILL.md 中使用三个路径变量，由 `team-skills/install.py` 安装时替换为本机实际路径：`<SR_REPO>` 为 GameDesignOS-SR 仓库的本地克隆路径，`<SR_WORKSPACE>` 为团队 workspace 路径，`<SR_PROJECT>` 为 Unity 工程根目录（配表与文本表所在）。手动安装时将三处变量整体替换即可；三个 SKILL.md 与本文件中的所有路径均基于这三个变量书写。
 
 ## 已完成波次
 

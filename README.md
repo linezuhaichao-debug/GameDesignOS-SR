@@ -13,8 +13,8 @@ cd GameDesignOS-SR
 python team-skills/install.py
 
 # 3. 在你的 AI 工具里使用
-#    /sr_concept <一句话创意>    —— 把创意扩成设计核三角报告，拍板后展开完整功能设计
-#    /sr_analysis <素材路径>     —— 分析录屏/截图/PV，拆竞品功能
+#    /sr_concept <一句话创意>    —— 创意扩成设计核三角报告，拍板后展开功能设计，交接 /sr_gdd
+#    /sr_analysis <素材路径>     —— 分析录屏/截图/PV，判定可参考后拆复刻规格，交接 /sr_gdd
 #    /sr_gdd <主题或材料路径>    —— 出实现粒度的功能 GDD
 ```
 

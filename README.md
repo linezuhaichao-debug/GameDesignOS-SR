@@ -18,9 +18,10 @@ python team-skills/install.py
 #    /sr_gdd <主题或材料路径>    —— 出实现粒度的功能 GDD
 ```
 
-安装脚本会询问两个路径，一般回车采用默认即可：
+安装脚本会询问三个路径，一般回车采用默认即可：
 
 - **workspace**：策划案、证据、决议等产出的落盘位置
+- **Unity 工程根目录**：包含 `Assets/` 的目录，配表与文本表所在（自动检测不到会要求手动输入）
 - **安装目标**：skill 装到哪个目录（Claude Code 用 `.claude/skills`；Codex 用 `~/.codex/skills`；其它工具指定其 skill 目录）
 
 ## 更新

@@ -1,6 +1,6 @@
 ---
 name: sr_gdd
-description: 功能 GDD 工作流——把体验记录、调研、脑图、旧策划案、配置表、UE 草稿等材料写成实现粒度的功能 GDD（功能规则、配置契约、验收标准、交接清单）。当用户说"写策划案、出GDD、设计提案、功能文档"时使用。
+description: 功能 GDD 工作流——把上游材料（旧案/脑图/体验记录/配置表等）写成实现粒度的功能 GDD（功能规则、配置契约、验收标准、交接清单）。当用户说"写策划案、出GDD、设计提案、功能文档"时使用。
 ---
 
 # 功能 GDD 工作流（SR-GDD）
@@ -86,11 +86,7 @@ description: 功能 GDD 工作流——把体验记录、调研、脑图、旧�
 approve / approve_with_conditions / request_missing_evidence / revise / reject
 ```
 
-用户选择后，按上游 `contracts/decision.schema.json` 把决策写为 JSON 存入 `workspace\decisions\`。写之前先读该 schema，注意：
-
-- 全部 required 字段必须有值（refs 类字段无内容时给空数组 `[]`，不要省略）
-- `decision_id` 必须匹配 `^DEC-[A-Z0-9-]{3,}$`（如 `DEC-20260723-AFK`）
-- `status` 枚举与 Human Gate 选项的映射：`approve→accepted`、`reject→rejected`、`approve_with_conditions→accepted`（条件写入选项备注）、`request_missing_evidence / revise→proposed`
+用户选择后，按 `../shared/decision-recording.md` 写决策记录。`status` 映射：`approve→accepted`、`reject→rejected`、`approve_with_conditions→accepted`（条件写入选项备注）、`request_missing_evidence / revise→proposed`。
 
 ## 产出规范
 
@@ -98,8 +94,6 @@ approve / approve_with_conditions / request_missing_evidence / revise / reject
 |------|------|
 | 功能 GDD | `proposals\<主题>_<日期>.md` |
 | 决策记录（decision.schema.json） | `decisions\decision_<主题>_<日期>.json` |
-| 证据与体验记录 | `evidence\` |
-| 分析中间稿 | `analysis\` |
 
 目录不存在时直接创建。日期格式 `YYYYMMDD`。
 

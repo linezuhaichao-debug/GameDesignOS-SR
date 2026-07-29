@@ -125,7 +125,6 @@ python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --project 
 
 - 玩法数值一律 data-driven，标注 `配表名.字段名`；还没建表的标"待配表"，**禁止硬编码和猜数**；
 - 全文区分并显式标注四类陈述：**已验证事实 / 项目假设 / 估算 / 未决问题**；
-- UI 按 UGUI 描述，全触控，点击热区 ≥ 44pt。
 
 完整约束见 `shared/sr_project_context.md`。
 

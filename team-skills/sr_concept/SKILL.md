@@ -1,6 +1,6 @@
 ---
 name: sr_concept
-description: 创新功能设计工作流——把一句话创意扩展为完整但可验证的游戏玩法/功能设计：先出设计核三角报告（concept seed、玩家动词、design nucleus options、假设台账）给用户拍板；选定设计核后展开完整功能设计（玩家承诺、核心循环、关键系统、scope gate、验证计划），交接 sr_gdd 出策划案。当用户说"想个新玩法、我有个创意、设计一个新功能、这个点子能不能做"时使用。
+description: 创新功能设计工作流——一句话创意 → 设计核三角报告 → 用户拍板 → 完整功能设计 → 交接 sr_gdd 出策划案。当用户想新玩法/新功能/有新创意，或问"这个点子能不能做"（可行性评估）时使用。
 ---
 
 # 创新功能设计工作流（SR-Concept）
@@ -14,7 +14,7 @@ description: 创新功能设计工作流——把一句话创意扩展为完整�
 
 方法论全部只读引用上游 `game-concept-architect`，本 skill 只固化 SR 团队的项目语境、VOI 门、产出路径与 Human Gate。
 
-适用范围：默认为**本项目（文明之跃）内的新玩法/功能**——数值铁律、UGUI、RPGBattleModule 双模式等项目约束直接生效。用户明确说是新游戏概念时按通用模式执行，项目约束全部标 `unknown`，交接 sr_gdd 时才注入项目语境。
+适用范围：默认为**本项目（文明之跃）内的新玩法/功能**——数值铁律、RPGBattleModule 双模式等项目约束直接生效。用户明确说是新游戏概念时按通用模式执行，项目约束全部标 `unknown`，交接 sr_gdd 时才注入项目语境。
 
 不编造用户未提供的信息——缺失信息一律标 `assumption` / `unknown`（含置信度、影响等级、验证方式），由人决定补不补。不替用户选设计核。
 
@@ -50,7 +50,7 @@ description: 创新功能设计工作流——把一句话创意扩展为完整�
 ### 第 1 步 · 创意复述与定位
 
 - 用一句话复述用户原始创意，确认理解一致。
-- 确认定位：项目内新玩法/功能（默认）| 通用概念。
+- 确认定位：项目内新玩法/功能（默认）| 通用概念（无输入阶段已收集的，此处仅复述确认）。
 - 记录 case visibility（照上游）：`case_visibility` 默认 `private_user_work`，`output_destination` 默认 `private_notes`。
 - 缺失信息会实质改变设计方向时才提澄清问题（如目标平台、参考游戏是灵感还是硬约束），**最多问三个**；用户要求继续就带着明确 assumptions 推进。
 
@@ -58,9 +58,9 @@ description: 创新功能设计工作流——把一句话创意扩展为完整�
 
 ### 第 2 步 · 设计核三角报告（第一阶段）
 
-读上游 `game-concept-architect/SKILL.md`，按需要加载 `references/concept-seed-extraction.zh-CN.md` 与 `references/design-nucleus-options.zh-CN.md`；输入涉及参考游戏或机制迁移时加读 `references/game-dissection-lens.zh-CN.md`。
+读上游 `game-concept-architect/SKILL.md`；撰写 Concept Seed Extraction 章节前加载 `references/concept-seed-extraction.zh-CN.md`，撰写 Design Nucleus Options 章节前加载 `references/design-nucleus-options.zh-CN.md`；输入涉及参考游戏或机制迁移时加读 `references/game-dissection-lens.zh-CN.md`。
 
-按上游 `idea_triage` 最低合格输出撰写报告 `analysis\concept-triage_<主题>_<日期>.md`：
+按上游 `idea_triage` 最低合格输出撰写设计核三角报告（产出路径见文末产出规范表）：
 
 - **Case Visibility**
 - **Original Idea**：一句话复述
@@ -76,9 +76,8 @@ description: 创新功能设计工作流——把一句话创意扩展为完整�
 
 - 报告出现的数值一律标"待配表"，禁止猜数。
 - 涉及战斗的设计注明 RPGBattleModule 确定性引擎两种模式（开放世界 / 独立战斗场景）的归属。
-- UI 按 UGUI 描述，全触控，点击热区 ≥ 44pt。
 
-上游硬规则全部生效：不把题材当差异化、不把世界观当玩法、不只列功能名、不用"内容很多"弥补核心循环薄弱、不把受众写成人口标签、不因品类标配就加系统。
+上游 `game-concept-architect/SKILL.md` §硬规则 全部生效（本步开头已读入）。
 
 完成判据：报告章节齐全；每个 nucleus option 有风险与最小验证方式；所有 assumption 已入台账。
 
@@ -105,13 +104,13 @@ pick_nucleus_<编号> / merge_nuclei / regenerate_options / request_external_evi
 - `pick_nucleus_<编号>` = 用户选定设计核，进入第 5 步。这是两阶段之间唯一的入口，不得默认进入。
 - `merge_nuclei` / `regenerate_options`：按用户指示回到第 2 步调整候选。
 - `request_external_evidence`：列出最小验证动作，补证据后回到第 2 步。
-- 选择后按上游 `contracts/decision.schema.json` 把决策写为 JSON 存入 `workspace\decisions\`。写之前先读该 schema（required 字段不省略、`decision_id` 匹配 `^DEC-[A-Z0-9-]{3,}$`）。`status` 映射：`pick_nucleus_*→accepted`、`stop→rejected`、`merge_nuclei / regenerate_options / request_external_evidence→proposed`。
+- 选择后按 `../shared/decision-recording.md` 写决策记录。`status` 映射：`pick_nucleus_*→accepted`、`stop→rejected`、`merge_nuclei / regenerate_options / request_external_evidence→proposed`。
 
 ### 第 5 步 · 完整功能设计（第二阶段，仅选定设计核后）
 
 读上游 references：`player-promise-framework.zh-CN.md`、`core-loop-expansion.zh-CN.md`、`scope-gate.zh-CN.md`、`prototype-validation-gate.zh-CN.md`、`production-feasibility.zh-CN.md`；涉及品类或参考游戏时加读 `genre-fit-matrix.zh-CN.md`、`reference-game-boundary.zh-CN.md`。
 
-产出功能设计稿 `analysis\feature-concept_<主题>_<日期>.md`，必备章节：
+产出功能设计稿（产出路径见产出规范表），必备章节：
 
 - **Player Promise**：一句话承诺、首次接触承诺、重复游玩承诺
 - **Core Loop**：行动、选择、风险、反馈、奖励、成长或新约束
@@ -134,8 +133,8 @@ pick_nucleus_<编号> / merge_nuclei / regenerate_options / request_external_evi
 route_to_sr_gdd / revise_concept / stop
 ```
 
-- `route_to_sr_gdd`：输出 sr_gdd 交接 `analysis\sr-gdd-handoff_<主题>_<日期>.json`，内容为材料清单：功能设计稿路径、设计核三角报告路径、已拍板设计核与关键取舍、假设台账、配置项预测、遗留 unknown 与置信度。sr_gdd 第 1 步资产盘点可直接从 `workspace\` 拾取这些材料。
-- 决策记录按 `contracts/decision.schema.json` 写入，`status` 映射：`route_to_sr_gdd→accepted`、`stop→rejected`、`revise_concept→proposed`。
+- `route_to_sr_gdd`：输出 sr_gdd 交接 JSON（产出路径见产出规范表），内容为材料清单：功能设计稿路径、设计核三角报告路径、已拍板设计核与关键取舍、假设台账、配置项预测、遗留 unknown 与置信度。sr_gdd 第 1 步资产盘点可直接从 `workspace\` 拾取这些材料。
+- 决策记录按 `../shared/decision-recording.md` 写入，`status` 映射：`route_to_sr_gdd→accepted`、`stop→rejected`、`revise_concept→proposed`。
 
 ## 产出规范
 

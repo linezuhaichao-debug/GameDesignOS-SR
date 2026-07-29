@@ -1,6 +1,6 @@
 ---
 name: sr_analysis
-description: 体验诊断 + 设计拆解复刻工作流——先把游戏截图、录屏、PV/宣传片、商店页、视频链接等素材分析为证据链报告（样本边界、证据索引、体验报告、问题卡）给用户判断；用户判定可参考后进入设计拆解，产出复刻规格（功能规则候选、UI 结构、数值表现、迁移边界），优化后交接 sr_gdd 出策划案。当用户说"分析录屏、体验复盘、拆新手期、竞品拆解、复刻这个功能、拆一下这个玩法"时使用。
+description: 体验诊断 + 设计拆解复刻工作流——游戏素材（截图/录屏/PV/商店页/视频链接）→ 证据链分析报告 → 用户判定 → 复刻规格 → 交接 sr_gdd 出策划案。当用户分析游戏素材、体验复盘、拆解竞品/玩法，或想复刻某个功能时使用。
 ---
 
 # 体验诊断与设计拆解工作流（SR-Analysis）
@@ -67,7 +67,7 @@ description: 体验诊断 + 设计拆解复刻工作流——先把游戏截图�
 
 ### 第 3 步 · 证据与诊断
 
-按上游 `game-experience-analyzer/SKILL.md` 的默认流程执行（证据索引 → 诊断包路由 → 品类路由 → 判断与验证计划），证据规则照上游：每个 P0/P1 判断必须引用 `evidence_id`；严格区分观察与解释；置信度低于 0.6 标 `uncertain`。
+按上游 `game-experience-analyzer/SKILL.md` 的默认流程执行（证据索引 → 诊断包路由 → 品类路由 → 判断与验证计划），证据规则照上游（第 2 步已读入）：P0/P1 判断必须引用 `evidence_id`、严格区分观察与解释、低置信度判断标 `uncertain`。
 完成判据：所有 P0/P1 问题卡与核心建议都有 `evidence_id`；无证据支撑的判断已标注。
 
 ### 第 4 步 · 治理检查
@@ -90,8 +90,12 @@ description: 体验诊断 + 设计拆解复刻工作流——先把游戏截图�
 accept_diagnosis / enter_dissection / request_more_evidence / route_to_ed_experiment / revise_player_promise / stop
 ```
 
-- `enter_dissection` = 用户看完报告，判定该功能**可参考、值得拆解复刻**，进入第 6 步。这是两阶段之间唯一的人口，不得默认进入。
-- 其余选项按原义执行；选择后按上游 `contracts/decision.schema.json` 把决策写为 JSON 存入 `workspace\decisions\`。写之前先读该 schema（required 字段不省略、`decision_id` 匹配 `^DEC-[A-Z0-9-]{3,}$`）。`status` 映射：`accept_diagnosis / route_to_ed_experiment→accepted`、`stop→rejected`、`request_more_evidence / revise_player_promise / enter_dissection→proposed`。
+- `accept_diagnosis`：用户认可诊断结论，第一阶段收尾，流程结束（不进入拆解）。
+- `enter_dissection` = 用户看完报告，判定该功能**可参考、值得拆解复刻**，进入第 6 步。这是两阶段之间唯一的入口，不得默认进入。
+- `request_more_evidence`：列出最小补充素材清单，用户补齐后回到第 2 步。
+- `route_to_ed_experiment`：输出 ED handoff（见本节末段），流程结束。
+- `revise_player_promise`：把报告中的玩家承诺修订项带回给承诺产出方（sr_concept 案例或人工），本流程结束。
+- 选择后按 `../shared/decision-recording.md` 写决策记录。`status` 映射：`accept_diagnosis / route_to_ed_experiment→accepted`、`stop→rejected`、`request_more_evidence / revise_player_promise / enter_dissection→proposed`。
 
 选择 `route_to_ed_experiment` 时，另按上游 `game-experience-density-optimizer` 的交接格式输出 ED handoff（保留每张问题卡的 `evidence_id`、不可判断项和置信度）。
 
@@ -99,10 +103,10 @@ accept_diagnosis / enter_dissection / request_more_evidence / route_to_ed_experi
 
 路由到上游游戏拆解方法：读 `game-experience-analyzer/references/game-dissection-diagnosis.zh-CN.md`，以 `transfer_mechanic` 为拆解目标执行（玩家动词、动作-目标对齐、不确定性来源、系统动态、内容流、迁移边界），不使用 `early_experience` 默认模式。
 
-产出**复刻规格** `analysis\replication-spec_<主题>_<日期>.md`，必备章节：
+产出**复刻规格**（产出路径见文末产出规范表），必备章节：
 
 - **功能规则候选**：每条绑定 `evidence_id`，并按项目语境显式标注 已验证事实 / 推断 / unknown
-- **UI 结构与交互流程**：界面层级、操作序列、反馈节奏（按 UGUI 描述）
+- **UI 结构与交互流程**：界面层级、操作序列、反馈节奏
 - **数值表现**：素材中观察到的数值；观察不到的一律标 `unknown` 或"待配表"，遵守数值铁律，禁止猜数
 - **推断配置项**：复刻需要的配置字段清单，标"待配表"
 - **迁移边界**：可迁移的结构 vs 依赖题材/美术/IP/具体数值/运营节奏、不可照搬的部分
@@ -119,8 +123,8 @@ accept_diagnosis / enter_dissection / request_more_evidence / route_to_ed_experi
 route_to_sr_gdd / revise_spec / stop
 ```
 
-- `route_to_sr_gdd`：输出 sr_gdd 交接 `analysis\sr-gdd-handoff_<主题>_<日期>.json`，内容为材料清单：复刻规格路径、证据索引路径、样本边界、迁移边界、已拍板取舍、遗留 unknown 与置信度。sr_gdd 第 1 步资产盘点可直接从 `workspace\` 拾取这些材料。
-- 决策记录按 `contracts/decision.schema.json` 写入，`status` 映射：`route_to_sr_gdd→accepted`、`stop→rejected`、`revise_spec→proposed`。
+- `route_to_sr_gdd`：输出 sr_gdd 交接 JSON（产出路径见产出规范表），内容为材料清单：复刻规格路径、证据索引路径、样本边界、迁移边界、已拍板取舍、遗留 unknown 与置信度。sr_gdd 第 1 步资产盘点可直接从 `workspace\` 拾取这些材料。
+- 决策记录按 `../shared/decision-recording.md` 写入，`status` 映射：`route_to_sr_gdd→accepted`、`stop→rejected`、`revise_spec→proposed`。
 
 ## 产出规范
 

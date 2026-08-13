@@ -19,6 +19,7 @@
 - 中文写作；术语与项目代码命名保持一致（如 Buff、Handler、Manager 不翻译）
 - 涉及战斗系统的设计，注意区分两种战斗，RPG战斗和SLG战斗
 - gdd里不要出现具体的代码、技术选型、程序实现等程序同学需要考虑的内容
+- 多语言 name/desc 键一律用项目通用格式，**禁止自造** `xxx_name_<id>` / `xxx_desc_<id>` 类键名：名称 `n{id}`、描述 `d{id}`（对应 `MultiLanguage` 的 `GetGIDNameId` / `GetGIDDescriptionId`，运行时 `i18n("n"..id)` / `i18n("d"..id)`）；`id` 取该实体配置的主键——如英雄取 `gid`，天赋取 `talentId`
 
 ## 受众默认
 

@@ -1,6 +1,6 @@
 ---
-name: sr_analysis
-description: 体验诊断 + 设计拆解复刻工作流——游戏素材（截图/录屏/PV/商店页/视频链接）→ 证据链分析报告 → 用户判定 → 复刻规格 → 交接 sr_gdd 出策划案。当用户分析游戏素材、体验复盘、拆解竞品/玩法，或想复刻某个功能时使用。
+name: sr-analysis
+description: 体验诊断 + 设计拆解复刻工作流——游戏素材（截图/录屏/PV/商店页/视频链接）→ 证据链分析报告 → 用户判定 → 复刻规格 → 交接 sr-gdd 出策划案。当用户分析游戏素材、体验复盘、拆解竞品/玩法，或想复刻某个功能时使用。
 ---
 
 # 体验诊断与设计拆解工作流（SR-Analysis）
@@ -10,7 +10,7 @@ description: 体验诊断 + 设计拆解复刻工作流——游戏素材（截�
 两段式流水线，中间由人判断：
 
 1. **第一阶段 · 证据链分析报告**（样本边界 + 证据索引 + 体验报告 + 问题卡 + 验证建议）。这是默认产出，做完即停，交给用户看。
-2. **第二阶段 · 设计拆解与复刻规格**（仅用户在报告门选择"可参考、进入拆解"后执行）。把素材中的功能设计拆成可复刻的规格，与用户迭代优化后交接 sr_gdd 生成功能 GDD。
+2. **第二阶段 · 设计拆解与复刻规格**（仅用户在报告门选择"可参考、进入拆解"后执行）。把素材中的功能设计拆成可复刻的规格，与用户迭代优化后交接 sr-gdd 生成功能 GDD。
 
 方法论全部只读引用上游 `game-experience-analyzer`，本 skill 只固化 SR 团队的项目语境、VOI 门、产出路径与 Human Gate。
 
@@ -21,19 +21,19 @@ description: 体验诊断 + 设计拆解复刻工作流——游戏素材（截�
 ## 使用方法
 
 ```
-/sr_analysis <素材路径或链接>
+/sr-analysis <素材路径或链接>
 ```
 
 或直接说人话，例如"分析一下这段新手期录屏"、"拆一下这个竞品的 PV"、"看看这个功能能不能复刻"。
 
 ## 无输入时的行为
 
-调用时未带任何素材（裸 `/sr_analysis`），**不得直接进入执行流程、不得自行扫描目录找素材**。先用一段话向用户说明需要什么，并停下等输入：
+调用时未带任何素材（裸 `/sr-analysis`），**不得直接进入执行流程、不得自行扫描目录找素材**。先用一段话向用户说明需要什么，并停下等输入：
 
 1. **素材**：截图、录屏文件、PV/宣传片、商店页或视频链接（给路径或 URL）。
 2. **分析目标**（有就说，没有就在第 1 步 VOI 门现场确认）：这次诊断要改变什么决策。
 
-提示中给出示例：`/sr_analysis 分析 D:\recordings\新手期首战.mp4 的前期体验`。用户补齐后再从第 0 步开始。
+提示中给出示例：`/sr-analysis 分析 D:\recordings\新手期首战.mp4 的前期体验`。用户补齐后再从第 0 步开始。
 
 ## 路径约定
 
@@ -94,7 +94,7 @@ accept_diagnosis / enter_dissection / request_more_evidence / route_to_ed_experi
 - `enter_dissection` = 用户看完报告，判定该功能**可参考、值得拆解复刻**，进入第 6 步。这是两阶段之间唯一的入口，不得默认进入。
 - `request_more_evidence`：列出最小补充素材清单，用户补齐后回到第 2 步。
 - `route_to_ed_experiment`：输出 ED handoff（见本节末段），流程结束。
-- `revise_player_promise`：把报告中的玩家承诺修订项带回给承诺产出方（sr_concept 案例或人工），本流程结束。
+- `revise_player_promise`：把报告中的玩家承诺修订项带回给承诺产出方（sr-concept 案例或人工），本流程结束。
 - 选择后按 `../shared/decision-recording.md` 写决策记录。`status` 映射：`accept_diagnosis / route_to_ed_experiment→accepted`、`stop→rejected`、`request_more_evidence / revise_player_promise / enter_dissection→proposed`。
 
 选择 `route_to_ed_experiment` 时，另按上游 `game-experience-density-optimizer` 的交接格式输出 ED handoff（保留每张问题卡的 `evidence_id`、不可判断项和置信度）。
@@ -120,11 +120,11 @@ accept_diagnosis / enter_dissection / request_more_evidence / route_to_ed_experi
 向用户呈现选项并等待选择：
 
 ```
-route_to_sr_gdd / revise_spec / stop
+route_to_sr-gdd / revise_spec / stop
 ```
 
-- `route_to_sr_gdd`：输出 sr_gdd 交接 JSON（产出路径见产出规范表），内容为材料清单：复刻规格路径、证据索引路径、样本边界、迁移边界、已拍板取舍、遗留 unknown 与置信度。sr_gdd 第 1 步资产盘点可直接从 `workspace\` 拾取这些材料。
-- 决策记录按 `../shared/decision-recording.md` 写入，`status` 映射：`route_to_sr_gdd→accepted`、`stop→rejected`、`revise_spec→proposed`。
+- `route_to_sr-gdd`：输出 sr-gdd 交接 JSON（产出路径见产出规范表），内容为材料清单：复刻规格路径、证据索引路径、样本边界、迁移边界、已拍板取舍、遗留 unknown 与置信度。sr-gdd 第 1 步资产盘点可直接从 `workspace\` 拾取这些材料。
+- 决策记录按 `../shared/decision-recording.md` 写入，`status` 映射：`route_to_sr-gdd→accepted`、`stop→rejected`、`revise_spec→proposed`。
 
 ## 产出规范
 
@@ -135,7 +135,7 @@ route_to_sr_gdd / revise_spec / stop
 | 问题卡 | `analysis\issue-cards_<主题>_<日期>.json` |
 | ED 交接（仅 route_to_ed_experiment 时） | `analysis\ed-handoff_<主题>_<日期>.json` |
 | 复刻规格（仅 enter_dissection 后） | `analysis\replication-spec_<主题>_<日期>.md` |
-| sr_gdd 交接（仅 route_to_sr_gdd 时） | `analysis\sr-gdd-handoff_<主题>_<日期>.json` |
+| sr-gdd 交接（仅 route_to_sr-gdd 时） | `analysis\sr-gdd-handoff_<主题>_<日期>.json` |
 | 决策记录（decision.schema.json） | `decisions\decision_<主题>_<日期>.json` |
 
 目录不存在时直接创建。日期格式 `YYYYMMDD`。

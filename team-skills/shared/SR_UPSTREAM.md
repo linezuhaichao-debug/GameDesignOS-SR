@@ -1,6 +1,6 @@
 # 上游来源与同步方式
 
-本文件由三个入口 skill 共享：`sr_gdd`（evidence-to-proposal，出功能 GDD）、`sr_analysis`（media-to-diagnosis，体验诊断）与 `sr_concept`（idea-to-concept，创新功能设计）。上游 skill 本体与模板**不复制、不修改**，以只读方式引用：
+本文件由三个入口 skill 共享：`sr-gdd`（evidence-to-proposal，出功能 GDD）、`sr-analysis`（media-to-diagnosis，体验诊断）与 `sr-concept`（idea-to-concept，创新功能设计）。上游 skill 本体与模板**不复制、不修改**，以只读方式引用：
 
 - 上游仓库：`<SR_REPO>`（fork 自 DY-2026/GameDesignOS）
 - 引用时上游版本：`0855025 Harden v1.3.0.dev0 portability and release readiness`（v1.3.0.dev0）
@@ -29,7 +29,7 @@ git merge upstream/main   # 或 rebase，解决冲突后更新本文件的版本
 ## 参考样本
 
 - 决议 JSON 格式：以上游 `contracts/decision.schema.json` 为权威定义
-- 流程来源：sr_gdd 固化自 `docs/workflows/evidence-to-proposal.md`；sr_analysis 固化自 `docs/workflows/media-to-diagnosis.md`
+- 流程来源：sr-gdd 固化自 `docs/workflows/evidence-to-proposal.md`；sr-analysis 固化自 `docs/workflows/media-to-diagnosis.md`
 
 ## 路径约定
 
@@ -37,6 +37,6 @@ git merge upstream/main   # 或 rebase，解决冲突后更新本文件的版本
 
 ## 已完成波次
 
-- 第一波（2026-07-24）：evidence-to-proposal → `sr_gdd`
-- 第二波（2026-07-24）：media-to-diagnosis → `sr_analysis`，产出落 `workspace\analysis\` 与 `workspace\evidence\`
-- 第三波（2026-07-24）：idea-to-concept → `sr_concept`（方法论引用 `game-concept-architect`），产出落 `workspace\analysis\`
+- 第一波（2026-07-24）：evidence-to-proposal → `sr-gdd`
+- 第二波（2026-07-24）：media-to-diagnosis → `sr-analysis`，产出落 `workspace\analysis\` 与 `workspace\evidence\`
+- 第三波（2026-07-24）：idea-to-concept → `sr-concept`（方法论引用 `game-concept-architect`），产出落 `workspace\analysis\`

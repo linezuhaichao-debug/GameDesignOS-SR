@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""安装 SR 团队工作流 skill（sr_gdd / sr_analysis / sr_concept）。
+"""安装 SR 团队工作流 skill（sr-gdd / sr-analysis / sr-concept）。
 
-把 team-skills/ 下的 sr_gdd、sr_analysis、sr_concept、shared 复制到本机 skill 目录，
+把 team-skills/ 下的 sr-gdd、sr-analysis、sr-concept、shared 复制到本机 skill 目录，
 并将其中的 <SR_REPO>、<SR_WORKSPACE>、<SR_PROJECT> 占位符替换为本机实际路径。
 
 用法：
@@ -19,7 +19,7 @@ import shutil
 import sys
 from pathlib import Path
 
-SKILL_DIRS = ("sr_gdd", "sr_analysis", "sr_concept", "shared")
+SKILL_DIRS = ("sr-gdd", "sr-analysis", "sr-concept", "shared")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEAM_SKILLS = Path(__file__).resolve().parent
 
@@ -101,7 +101,17 @@ def substitute(text: str, repo: Path, workspace: Path, project: Path) -> str:
     return text
 
 
+# 旧版 skill 目录名（下划线命名，2026-07 起已改为 kebab-case，如 sr_gdd -> sr-gdd）。
+# DSH 等工具要求 skill 名必须为 kebab-case；保留旧名清理以免新旧目录并存导致重复加载。
+LEGACY_SKILL_DIR_NAMES = ("sr_gdd", "sr_analysis", "sr_concept")
+
+
 def install(workspace: Path, project: Path, target: Path) -> None:
+    for legacy in LEGACY_SKILL_DIR_NAMES:
+        legacy_dst = target / legacy
+        if legacy_dst.exists():
+            shutil.rmtree(legacy_dst)
+            print(f"  已清理旧目录 {legacy_dst}（旧命名，已由 kebab-case 目录取代）")
     for name in SKILL_DIRS:
         src = TEAM_SKILLS / name
         dst = target / name
@@ -153,7 +163,7 @@ def main() -> None:
 
     target.mkdir(parents=True, exist_ok=True)
     install(workspace, project, target)
-    print("\n完成。在你的 AI 工具中输入 /sr_gdd、/sr_analysis 或 /sr_concept 即可使用；详见 team-skills/README.md。")
+    print("\n完成。在你的 AI 工具中输入 /sr-gdd、/sr-analysis 或 /sr-concept 即可使用；详见 team-skills/README.md。")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,8 @@
+---
+name: sr-gdd-human
+description: 功能 GDD 工作流（人类可读版）——结果导向的轻量流程，省略证据溯源与配置契约章节，产出面向开发团队的规则+界面线框文档。当用户要"人类可读的策划案/合并定稿"，或已用 sr-gdd 定稿后要出可读版时使用。
+---
+
 # Skill: sr-gdd-human
 # 功能 GDD 工作流（人类可读版，SR-GDD-Human）
 

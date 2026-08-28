@@ -6,9 +6,10 @@
 | --- | --- | --- |
 | `sr-concept` | 创新功能设计：把一句话创意扩成设计核三角报告（concept seed、玩家动词、design nucleus options、假设台账）；你拍板设计核后展开完整功能设计（玩家承诺、核心循环、scope gate、验证计划），交接给 sr-gdd | "我有个创意"、"想个新玩法"、"这个点子能不能做" |
 | `sr-analysis` | 体验诊断 + 设计拆解复刻：先把录屏/截图/PV/商店页等素材分析成证据链报告；你判定"可参考"后再拆成复刻规格，交接给 sr-gdd | "分析这段录屏"、"拆一下这个竞品玩法"、"这个功能能不能复刻" |
-| `sr-gdd` | 功能 GDD 工作流：把体验记录、旧策划案、脑图、配置表等材料写成实现粒度的功能 GDD（功能规则、配置契约、验收标准、交接清单） | "写策划案"、"出 GDD"、"把这个整理成功能文档" |
+| `sr-gdd` | 功能 GDD 工作流（完整溯源版）：把体验记录、旧策划案、脑图、配置表等材料写成实现粒度的功能 GDD（功能规则、配置契约、验收标准、交接清单），带证据溯源与治理引用 | "写策划案"、"出 GDD"、"把这个整理成功能文档" |
+| `sr-gdd-human` | 功能 GDD 工作流（人类可读版）：同样产出实现粒度的功能 GDD，但不生成配置契约、不留证据/拍板/治理等过程性内容，只呈现设计结果；重点保证功能规则详细可读、界面流程完整到位 | "出一份给开发团队看的可读版 GDD"、"定稿只留规则不要过程" |
 
-三个 skill 共享 `shared/` 下的项目语境（`sr_project_context.md`：数值铁律、写作约束）与上游说明（`SR_UPSTREAM.md`），安装时必须四个目录一起装。
+四个 skill 共享 `shared/` 下的项目语境（`sr_project_context.md`：数值铁律、写作约束）与上游说明（`SR_UPSTREAM.md`），安装时必须五个目录一起装。
 
 ## 一、安装（团队成员）
 
@@ -24,7 +25,7 @@ python team-skills/install.py
 1. 自动识别仓库路径（`<SR_REPO>`）；
 2. 询问 workspace 路径（`<SR_WORKSPACE>`，策划案/证据/决议的落盘位置，通常自动检测正确，回车确认即可）；
 3. 询问 Unity 工程根目录（`<SR_PROJECT>`，包含 `Assets/` 的目录，配表与文本表所在；自动检测 = `Assets/HotRes` 结构 + `.git` remote URL 特征匹配，与工程目录名无关，检测不到会要求手动输入）；
-4. 询问安装目标目录后，把 `sr-gdd`、`sr-analysis`、`sr-concept`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
+4. 询问安装目标目录后，把 `sr-gdd`、`sr-gdd-human`、`sr-analysis`、`sr-concept`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
 
 非交互安装（脚本/CI 用）：
 
@@ -32,7 +33,7 @@ python team-skills/install.py
 python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --project "D:\TimeMachine\PlanetRoot" --target "D:\.claude\skills" --yes
 ```
 
-**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr-gdd/`、`sr-analysis/`、`sr-concept/`、`shared/` 四个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>`、`<SR_PROJECT>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
+**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr-gdd/`、`sr-gdd-human/`、`sr-analysis/`、`sr-concept/`、`shared/` 五个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>`、`<SR_PROJECT>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
 
 **更新**：`git pull` 后重跑一次 `install.py` 即可（会覆盖旧安装）。
 
@@ -97,6 +98,16 @@ python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --project 
 | `revise` | 打回修改 |
 | `reject` | 否决 |
 
+### sr-gdd-human：出人类可读版功能 GDD
+
+```
+/sr-gdd-human 基于 神话宝库四版GDD 出合并定稿
+```
+
+与 sr-gdd 的分工：sr-gdd 带证据溯源、配置契约、治理引用，适合正式立项留档；sr-gdd-human **只留设计结果**——不生成配置契约（表由策划自建）、不写证据/拍板编号/裁决表/台账/治理引用，重点保证功能规则（条件/动作/结果/边界齐全且一句话可读）与界面流程（每个界面 ASCII 线框图 + 逐条 UE 规则表）详细到位。适合在 sr-gdd 定稿后出"给开发团队看的执行版"，或材料充分时直接一步出可读版。
+
+Human Gate 选项比 sr-gdd 少一个 `request_missing_evidence`（缺材料在流程内已问过）：`approve` / `approve_with_conditions` / `revise` / `reject`。
+
 ### 典型流水线
 
 ```
@@ -107,6 +118,10 @@ python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --project 
                                               (route_to_sr-gdd)│
                                                               ▼
 旧策划案/配置表 ────────────────────────────────► /sr-gdd ──► 功能 GDD ──► 开发排期
+                                                              │
+                                              (需要可读执行版)│
+                                                              ▼
+                                              /sr-gdd-human ──► 人类可读版 GDD（无溯源/配置契约）
 ```
 
 ### 产出落盘位置

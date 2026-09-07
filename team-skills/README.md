@@ -1,6 +1,6 @@
 # SR 团队工作流 skill
 
-本目录是团队内部的三个工作流 skill，方法论只读引用本仓库的上游 skill（`game-experience-analyzer`、`game-design-proposal-writer`、`game-concept-architect`、`paranoia-ai-system-evolver` 等），本目录只固化 SR 团队的项目语境、VOI 门、产出路径与 Human Gate。
+本目录是团队内部的六个工作流 skill，方法论只读引用本仓库的上游 skill（`game-experience-analyzer`、`game-design-proposal-writer`、`game-concept-architect`、`paranoia-ai-system-evolver` 等），本目录只固化 SR 团队的项目语境、VOI 门、产出路径与 Human Gate。
 
 | skill | 用途 | 什么时候用 |
 | --- | --- | --- |
@@ -9,8 +9,9 @@
 | `sr-gdd` | 功能 GDD 工作流（完整溯源版）：把体验记录、旧策划案、脑图、配置表等材料写成实现粒度的功能 GDD（功能规则、配置契约、验收标准、交接清单），带证据溯源与治理引用 | "写策划案"、"出 GDD"、"把这个整理成功能文档" |
 | `sr-gdd-human` | 功能 GDD 工作流（人类可读版）：同样产出实现粒度的功能 GDD，但不生成配置契约、不留证据/拍板/治理等过程性内容，只呈现设计结果；重点保证功能规则详细可读、界面流程完整到位 | "出一份给开发团队看的可读版 GDD"、"定稿只留规则不要过程" |
 | `sr-config` | 策划配置数据契约：把确认的策划规则落实为可追溯、可确认、可读回验收的配置数据变更（新建运行时表、增删改字段/记录、同步 INDEX/说明/批注、新表测试数据、读回验收） | "把这条规则落成配置表"、"给这张表加个字段"、"建一张新配置表" |
+| `sr-config-heroskill` | 英雄技能配置：把【小世界】英雄技能详细设计.xlsm 的某英雄技能按规范落到副玩法技能表（B008-副玩法技能表.xlsx），自动推导子技能/计算/buff 行与 ID 引用链，附 `diff`/`diffview` 改动对比与变动行视图 | "配置弗莱德"、"把技能设计落到配置表"、"这把英雄技能配一下" |
 
-五个 skill 共享 `shared/` 下的项目语境（`sr_project_context.md`：数值铁律、写作约束）与上游说明（`SR_UPSTREAM.md`），安装时必须六个目录一起装。
+六个 skill 共享 `shared/` 下的项目语境（`sr_project_context.md`：数值铁律、写作约束）与上游说明（`SR_UPSTREAM.md`），安装时必须七个目录一起装。
 
 ## 一、安装（团队成员）
 
@@ -26,7 +27,7 @@ python team-skills/install.py
 1. 自动识别仓库路径（`<SR_REPO>`）；
 2. 询问 workspace 路径（`<SR_WORKSPACE>`，策划案/证据/决议的落盘位置，通常自动检测正确，回车确认即可）；
 3. 询问 Unity 工程根目录（`<SR_PROJECT>`，包含 `Assets/` 的目录，配表与文本表所在；自动检测 = `Assets/HotRes` 结构 + `.git` remote URL 特征匹配，与工程目录名无关，检测不到会要求手动输入）；
-4. 询问安装目标目录后，把 `sr-gdd`、`sr-gdd-human`、`sr-analysis`、`sr-concept`、`sr-config`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
+4. 询问安装目标目录后，把 `sr-gdd`、`sr-gdd-human`、`sr-analysis`、`sr-concept`、`sr-config`、`sr-config-heroskill`、`shared` 复制过去，并把文件里的路径变量替换成本机实际路径。
 
 非交互安装（脚本/CI 用）：
 
@@ -34,7 +35,7 @@ python team-skills/install.py
 python team-skills/install.py --workspace "D:\GameDesignOS\workspace" --project "D:\TimeMachine\PlanetRoot" --target "D:\.claude\skills" --yes
 ```
 
-**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr-gdd/`、`sr-gdd-human/`、`sr-analysis/`、`sr-concept/`、`sr-config/`、`shared/` 六个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>`、`<SR_PROJECT>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
+**用的不是 Claude Code？** SKILL.md 是标准 Agent Skills 格式，任何支持该格式的工具都能加载——把 `--target` 指到对应工具的 skill 目录即可（例如 Codex 用 `~/.codex/skills`）。工具完全不支持 skill 格式时，也可以手动复制 `sr-gdd/`、`sr-gdd-human/`、`sr-analysis/`、`sr-concept/`、`sr-config/`、`sr-config-heroskill/`、`shared/` 七个目录到任意位置，把文件里的 `<SR_REPO>`、`<SR_WORKSPACE>`、`<SR_PROJECT>` 全局替换为本机路径，然后把 SKILL.md 内容作为提示词使用。
 
 **更新**：`git pull` 后重跑一次 `install.py` 即可（会覆盖旧安装）。
 

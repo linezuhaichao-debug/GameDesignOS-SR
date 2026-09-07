@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""安装 SR 团队工作流 skill（sr-gdd / sr-gdd-human / sr-analysis / sr-concept / sr-config）。
+"""安装 SR 团队工作流 skill（sr-gdd / sr-gdd-human / sr-analysis / sr-concept / sr-config / sr-config-heroskill）。
 
-把 team-skills/ 下的 sr-gdd、sr-gdd-human、sr-analysis、sr-concept、sr-config、shared 复制到本机 skill 目录，
+把 team-skills/ 下的 sr-gdd、sr-gdd-human、sr-analysis、sr-concept、sr-config、sr-config-heroskill、shared 复制到本机 skill 目录，
 并将其中的 <SR_REPO>、<SR_WORKSPACE>、<SR_PROJECT> 占位符替换为本机实际路径。
 
 用法：
@@ -19,7 +19,7 @@ import shutil
 import sys
 from pathlib import Path
 
-SKILL_DIRS = ("sr-gdd", "sr-gdd-human", "sr-analysis", "sr-concept", "sr-config", "shared")
+SKILL_DIRS = ("sr-gdd", "sr-gdd-human", "sr-analysis", "sr-concept", "sr-config", "sr-config-heroskill", "shared")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEAM_SKILLS = Path(__file__).resolve().parent
 

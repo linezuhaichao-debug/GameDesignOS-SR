@@ -21,6 +21,7 @@ description: 将游戏策划规则转换为可追溯的配置数据契约。用�
 ## 附带工具
 
 - [tools/probe_workbook.py](tools/probe_workbook.py)：工作簿标准探查。凡需要读取既有工作簿结构（表头、样本、`INDEX`、批注、结构特性），一律运行该脚本而不是临时手写 openpyxl 代码——脚本默认输出**全部单元格批注**，批注是项目字段契约（枚举含义、codec 规则、取值边界）的权威载体，只读 `cell.value` 会漏读契约；对零批注的运行时表它会显式告警。
+- [tools/check_pattern_fields.py](tools/check_pattern_fields.py)：项目 profile「已验证模式」的字段级校验。建表/写字段前先跑它——全部通过则模式直接采用，有字段缺失则降级 `candidate` 并登记 `profile_conflict`。它取代对来源工作簿的哈希校验（配置表是活文档，以字段存在性为验证依据）。
 - [tools/readback_report_template.md](tools/readback_report_template.md)：读回验收报告模板。验收报告必须逐条对照模板必达项填写 `pass|fail|not_applicable`，**禁止自拟另一套"全部通过"式清单替代模板**——`pass` 总数不能掩盖任何必达项缺失。
 
 ## 状态
@@ -60,7 +61,7 @@ description: 将游戏策划规则转换为可追溯的配置数据契约。用�
 1. 用户明确确认定义目标契约；
 2. 当前目标工作簿定义变更前事实；
 3. 用户提供的策划文档定义目标需求；
-4. 项目 profile 只提供候选格式；来源元数据与当前文件哈希匹配时可作为已验证参考，失配时降级为候选；
+4. 项目 profile 只提供候选格式；按 profile 的字段级校验（`tools/check_pattern_fields.py`）通过时可作为已验证参考，字段缺失/改名时降级为 `candidate` 并登记 `profile_conflict`；
 5. 无法解释且影响本次写入的冲突进入 `blocking_items`。
 
 按照 [规则与 schema](references/rules_and_schema.md) 建立规则台账、字段 schema、结构化 codec、引用、约束和 `INDEX` 映射。每条规则至少关联一个契约目标，允许一条规则影响多个目标。

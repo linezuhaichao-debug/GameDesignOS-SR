@@ -1,4 +1,4 @@
-# GameDesignOS-SR
+# GameDesignOS-SR（废弃了，sr-team-skills仓库是现在使用的）
 
 团队内部仓库：游戏设计工作流 skill（sr-concept 创意扩功能设计 / sr-analysis 体验诊断拆解 / sr-gdd 功能 GDD）。
 
